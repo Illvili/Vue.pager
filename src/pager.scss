@@ -1,0 +1,75 @@
+.pagination {
+    .page-mobile {
+        display: none;
+    }
+    .jumpInput {
+        .form-control {
+            position: relative;
+            z-index: 3;
+            float: left;
+            width: 3.5em;
+            margin-left: -1px;
+            padding: 6px;
+            text-align: center;
+            transition: width .5s, color .5s;
+            text-overflow: ellipsis;
+            color: #999;
+            &::-webkit-inner-spin-button {
+                display: none;
+            }
+            &:focus, &.hasValue {
+                width: 6em;
+                color: #555;
+                &::-webkit-inner-spin-button {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    .jumpButton {
+        &.v-transition {
+            // cause diaplay delay
+            // duration must > 0s
+            transition: display .1s 1s;
+        }
+        &.v-transition a {
+            transition: transform .5s .5s, opacity .5s .5s;
+            transform: translate3D(0, 0, 0) translate(0);
+            opacity: 1;
+        }
+        &.v-leave a, &.v-enter a {
+            transform: translate(-100%);
+            opacity: 0;
+        }
+        &.v-leave a {
+            transition: transform .5s 0s, opacity .5s 0s;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
+    .pagination {
+        .page-mobile {
+            display: inline;
+            > a {
+                position: relative;
+                .page-select {
+                    position: absolute;
+                    box-sizing: border-box;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1;
+                    opacity: 0;
+                }
+            }
+        }
+        .page {
+            display: none;
+        }
+        .jumpInput, .jumpButton {
+            display: none;
+        }
+    }
+}
